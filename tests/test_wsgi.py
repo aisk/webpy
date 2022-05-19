@@ -1,7 +1,7 @@
 import threading
 import time
 import unittest
-from urllib.parse import unquote_to_bytes as unquote
+from urllib.parse import unquote_to_bytes
 
 import web
 
@@ -63,7 +63,7 @@ class WSGITest(unittest.TestCase):
 
         b = web.browser.AppBrowser(app)
         r = b.open("/%E2%84%A6")
-        s = unquote(r.read())
+        s = unquote_to_bytes(r.read())
         self.assertEqual(s, b"\xE2\x84\xA6")
 
         app.stop()
